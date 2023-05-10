@@ -6,7 +6,7 @@
 /*   By: mpoussie <mpoussie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 02:02:56 by mpoussie          #+#    #+#             */
-/*   Updated: 2023/05/09 05:41:33 by mpoussie         ###   ########.fr       */
+/*   Updated: 2023/05/10 19:14:39 by mpoussie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@
 #include <stdio.h>
 #include <fcntl.h>
 #include <stdlib.h>
+
+typedef struct s_game
+{
+	int		map;
+};
 
 int ft_map_display(char map[MAP_WIDTH][MAP_HEIGHT]);
 

@@ -6,7 +6,7 @@
 /*   By: mpoussie <mpoussie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 03:59:03 by mpoussie          #+#    #+#             */
-/*   Updated: 2023/05/09 05:43:09 by mpoussie         ###   ########.fr       */
+/*   Updated: 2023/05/09 16:56:54 by mpoussie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int main(void)
 	if (fd < 0)
 		exit(0);
 	i = 0;
-	while (get_next_line(fd, &line) > 0)
+	while (get_next_line(fd, line) > 0)
 	{
 		j = 0;
 		while (j < MAP_WIDTH && line[j])
