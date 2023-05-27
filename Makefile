@@ -6,7 +6,7 @@
 #    By: mpoussie <mpoussie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/08 17:19:09 by mpoussie          #+#    #+#              #
-#    Updated: 2023/05/09 04:47:59 by mpoussie         ###   ########.fr        #
+#    Updated: 2023/05/13 18:47:20 by mpoussie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ RM				= rm -rf
 CFLAGS			= -Wall -Wextra -Werror
 
 SRCS    		=	main.c \
-					core/ft_map_display.c \
+					core/map/ft_map_display.c \
+					core/map/ft_map_utils.c \
 
 all: ${NAME}
 
