@@ -3,114 +3,103 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpoussie <mpoussie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mpoussie <mpoussie@student.42lehavre.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 01:40:48 by mpoussie          #+#    #+#             */
-/*   Updated: 2023/06/05 05:05:13 by mpoussie         ###   ########.fr       */
+/*   Updated: 2023/06/11 22:56:00 by mpoussie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
 
-void	update(t_game *game, int x, int _y)
+void	right(t_game *game)
 {
-	char *relative_path; 
-	
-	relative_path = "./assets/bg2.xpm";
-	put_image(game, relative_path, game->player.x, game->player.y);
-	put_image(game, relative_path, x, _y);
+	int		i;
+	int		j;
+	char	*relative_path;
+
+	relative_path = "./assets/ped_right.xpm";
+	i = game->player.y;
+	j = game->player.x + 32;
+	printf("\ncheck_move:%d\nY:%d\nX:%d", check_move(game, j, i), i, j);
+	if (check_move(game, j, i) == 1)
+	{
+		game->player.x = j;
+		game->player.mouv++;
+		display_assets(game);
+		put_image(game, relative_path, j, i);
+	}
+	else
+	{
+		printf("Mouvement interdit vers la droite.\n");
+	}
 }
 
-void right(t_game *game)
+void	left(t_game *game)
 {
-    int i;
-    int j;
-    char *relative_path;
+	int		i;
+	int		j;
+	char	*relative_path;
 
-    relative_path = "./assets/ped_right.xpm";
-    i = game->player.y;
-    j = game->player.x + 1;
-	printf("\n%d\n", check_wall(game));
-    if (check_wall(game) == 1)
-    {
-        // Le mouvement est autorisé, effectuez les mises à jour nécessaires
-        game->player.mouv++;
-        game->player.x = j;
-        update(game, j, i);
-        put_image(game, relative_path, j, i);
-    }
-    else
-    {
-        printf("Mouvement interdit vers la droite.\n");
-    }
+	relative_path = "./assets/ped_left.xpm";
+	i = game->player.y;
+	j = game->player.x - 32;
+	printf("\ncheck_move:%d\nY:%d\nX:%d", check_move(game, j, i), i, j);
+	if (check_move(game, j, i) == 1)
+	{
+		game->player.x = j;
+		game->player.mouv++;
+		display_assets(game);
+		put_image(game, relative_path, j, i);
+	}
+	else
+	{
+		printf("Mouvement interdit vers la gauche.\n");
+	}
 }
 
-void left(t_game *game)
+void	up(t_game *game)
 {
-    int i;
-    int j;
-    char *relative_path;
+	int		i;
+	int		j;
+	char	*relative_path;
 
-    relative_path = "./assets/ped_left.xpm";
-    i = game->player.y;
-    j = game->player.x - 1;
-    if (check_wall(game) == 1)
-    {
-        // Le mouvement est autorisé, effectuez les mises à jour nécessaires
-        game->player.mouv++;
-        game->player.x = j;
-        update(game, j, i);
-        put_image(game, relative_path, j, i);
-    }
-    else
-    {
-        printf("Mouvement interdit vers la gauche.\n");
-    }
+	relative_path = "./assets/ped.xpm";
+	i = game->player.y - 32;
+	j = game->player.x;
+	printf("\ncheck_move:%d\nY:%d\nX:%d", check_move(game, j, i), i, j);
+	if (check_move(game, j, i) == 1)
+	{
+		game->player.y = i;
+		game->player.mouv++;
+		display_assets(game);
+		put_image(game, relative_path, j, i);
+	}
+	else
+	{
+		printf("Mouvement interdit vers le haut.\n");
+	}
 }
 
-void up(t_game *game)
+void	down(t_game *game)
 {
-    int i;
-    int j;
-    char *relative_path;
+	int		i;
+	int		j;
+	char	*relative_path;
 
-    relative_path = "./assets/ped.xpm";
-    i = game->player.y - 1;
-    j = game->player.x;
-    if (check_wall(game) == 1)
-    {
-        // Le mouvement est autorisé, effectuez les mises à jour nécessaires
-        game->player.mouv++;
-        game->player.y = i;
-        update(game, j, i);
-        put_image(game, relative_path, j, i);
-    }
-    else
-    {
-        printf("Mouvement interdit vers le haut.\n");
-    }
+	relative_path = "./assets/ped_back.xpm";
+	i = game->player.y + 32;
+	j = game->player.x;
+	printf("\ncheck_move:%d\nY:%d\nX:%d", check_move(game, j, i), i, j);
+	if (check_move(game, j, i) == 1)
+	{
+		game->player.y = i;
+		game->player.mouv++;
+		display_assets(game);
+		put_image(game, relative_path, j, i);
+	}
+	else
+	{
+		printf("Mouvement interdit vers le bas.\n");
+	}
 }
-
-void down(t_game *game)
-{
-    int i;
-    int j;
-    char *relative_path;
-
-    relative_path = "./assets/ped_down.xpm";
-    i = game->player.y + 1;
-    j = game->player.x;
-    if (check_wall(game) == 1)
-    {
-        // Le mouvement est autorisé, effectuez les mises à jour nécessaires
-        game->player.mouv++;
-        game->player.y = i;
-        update(game, j, i);
-        put_image(game, relative_path, j, i);
-    }
-    else
-    {
-        printf("Mouvement interdit vers le bas.\n");
-    }
-}
-

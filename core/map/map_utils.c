@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpoussie <mpoussie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mpoussie <mpoussie@student.42lehavre.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 00:59:23 by mpoussie          #+#    #+#             */
-/*   Updated: 2023/06/05 03:56:25 by mpoussie         ###   ########.fr       */
+/*   Updated: 2023/06/11 22:03:07 by mpoussie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ void	*put_image(t_game *game, char *relative_path, int x, int y)
 	game->map.xpm = mlx_xpm_file_to_image(game->map.mlx, relative_path,
 			&game->map.x, &game->map.y);
 	mlx_put_image_to_window(game->map.mlx, game->map.mlx_window, game->map.xpm,
-			x, y);
+		x, y);
 	return (game->map.xpm);
 }

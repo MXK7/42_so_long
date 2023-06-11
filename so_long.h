@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpoussie <mpoussie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mpoussie <mpoussie@student.42lehavre.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 02:02:56 by mpoussie          #+#    #+#             */
-/*   Updated: 2023/06/05 04:00:36 by mpoussie         ###   ########.fr       */
+/*   Updated: 2023/06/11 22:54:18 by mpoussie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 
 # include "include/libft/libft.h"
 # include "minilibx-linux/mlx.h"
-# include <fcntl.h> 
-# include <stdio.h> // TODO DELETE
+# include <fcntl.h>
+# include <stdio.h>  // TODO DELETE
 # include <stdlib.h> // TODO DELETE
 # include <string.h> // TODO DELETE
 
@@ -33,12 +33,12 @@
 # define false 0
 # define bool int
 
-# define UP		13
-# define DOWN	1
-# define LEFT	0
-# define RIGHT	2
-# define ESC	53
-# define SIZE   48
+# define UP 13
+# define DOWN 1
+# define LEFT 0
+# define RIGHT 2
+# define ESC 53
+# define SIZE 48
 
 # define ERROR_LINELEN "An error occurred while reading the file [@FT_LINELEN:23]"
 # define ERROR_INIT_MAP "An error has occurred while executing the map. [@INIT_MAP]"
@@ -56,12 +56,12 @@ typedef struct s_player
 	int			x;
 	int			y;
 
-	int 		player_check;
-	int 		exit_check;
+	int			player_check;
+	int			exit_check;
 	int			corner_check;
 
-	int 		corner;
-	int 		mouv;
+	int			corner;
+	int			mouv;
 
 }				t_player;
 
@@ -71,10 +71,9 @@ typedef struct s_map
 
 	int			map_width;
 	int			map_height;
-	int 		image_width;
-	int 		image_height;
-	int 		x_offset;
-	int 		y_offset;
+
+	int 		house_x;
+	int 		house_y;
 
 	int			x;
 	int			y;
@@ -91,6 +90,7 @@ typedef struct s_game
 {
 	t_player	player;
 	t_map		map;
+	int			init;
 }				t_game;
 
 // ############# UTILS ############# //
@@ -104,11 +104,10 @@ int				destroy_window(t_game *game);
 void			init_map(t_game *game);
 void			display_assets(t_game *game);
 int				check_shape(t_game *game);
-int				check_wall(t_game *game);
+int				check_move(t_game *game, int new_x, int new_y);
 
 // ############# PLAYER ############# //
 int				key_check(int key_code, t_game *game);
-int				move_check(t_game *game, int i, int j);
 void			update(t_game *game, int x, int _y);
 void			right(t_game *game);
 void			left(t_game *game);

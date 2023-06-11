@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpoussie <mpoussie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mpoussie <mpoussie@student.42lehavre.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 19:52:20 by mpoussie          #+#    #+#             */
-/*   Updated: 2023/06/03 23:02:07 by mpoussie         ###   ########.fr       */
+/*   Updated: 2023/06/11 22:02:49 by mpoussie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,37 +63,4 @@ void	init_map(t_game *game)
 {
 	init_map_allocate_memory(game);
 	init_map_set_dimensions(game);
-}
-
-// DISPLAY MAP WITH SPRITES
-void	display_assets(t_game *game)
-{
-	int	image_x;
-	int	image_y;
-	int	x;
-	int	y;
-
-	y = 0;
-	put_image(game, "./assets/bg2.xpm", 0, 1);
-	while (y < game->map.map_height)
-	{
-		x = 0;
-		while (x < game->map.map_width)
-		{
-			image_x = x * IMAGE_WIDTH;
-			image_y = y * IMAGE_HEIGHT;
-			if (game->map.map_size[y][x] == '1')
-				put_image(game, "./assets/wall.xpm", image_x, image_y);
-			else if (game->map.map_size[y][x] == 'P')
-			{
-				game->player.x = x;
-				game->player.y = y;
-				put_image(game, "./assets/ped.xpm", image_x, image_y);
-			}
-			else if (game->map.map_size[y][x] == 'E')
-				put_image(game, "./assets/house.xpm", image_x, image_y);
-			x++;
-		}
-		y++;
-	}
 }

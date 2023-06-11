@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mpoussie <mpoussie@student.42.fr>          +#+  +:+       +#+         #
+#    By: mpoussie <mpoussie@student.42lehavre.fr    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/08 17:19:09 by mpoussie          #+#    #+#              #
-#    Updated: 2023/06/03 21:43:42 by mpoussie         ###   ########.fr        #
+#    Updated: 2023/06/11 22:04:52 by mpoussie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,12 +17,12 @@ RM				= rm -rf
 CFLAGS			= -Wall -Wextra -Werror
 
 SRCS    		=	core/main.c \
-					core/map/map.c \
+					core/map/map_init.c \
+					core/map/map_display.c \
 					core/map/map_utils.c \
 					core/map/map_control.c \
 					core/player/player_utils.c \
 					core/player/player.c \
-					
 
 all: ${NAME}
 
