@@ -6,52 +6,59 @@
 /*   By: mpoussie <mpoussie@student.42lehavre.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 22:02:25 by mpoussie          #+#    #+#             */
-/*   Updated: 2023/06/11 22:40:42 by mpoussie         ###   ########.fr       */
+/*   Updated: 2023/06/16 05:35:41 by mpoussie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
 
 // DISPLAY MAP WITH SPRITES
-static void	display_map_elements(int x, int y, int image_x, int image_y)
+void	init_assets(t_game *game)
 {
-	t_game	*game;
+	int		size;
 
-	while (x < game->map.map_width)
-	{
-		image_x = x * IMAGE_WIDTH;
-		image_y = y * IMAGE_HEIGHT;
-		if (game->map.map_size[y][x] == '1')
-			put_image(game, "./assets/wall.xpm", image_x, image_y);
-		else if (game->map.map_size[y][x] == 'E')
-		{
-			put_image(game, "./assets/house.xpm", image_x, image_y);
-			game->map.house_x = image_x;
-			game->map.house_y = image_y;
-		}
-		else if (game->map.map_size[y][x] == 'P' && game->init == 1)
-		{
-			game->init += 1;
-			game->player.x = image_x;
-			game->player.y = image_y;
-		}
-		x++;
-	}
+	size = 32;
+	game->map.weapon = mlx_xpm_file_to_image(game->map.mlx,
+			"./assets/weapon.xpm", &size, &size);
+	game->map.ped = mlx_xpm_file_to_image(game->map.mlx,
+			"./assets/ped.xpm", &size, &size);
+	game->map.ped_left = mlx_xpm_file_to_image(game->map.mlx,
+			"./assets/ped_left.xpm", &size, &size);
+	game->map.ped_right = mlx_xpm_file_to_image(game->map.mlx,
+			"./assets/ped_right.xpm", &size, &size);
+	game->map.ped_back = mlx_xpm_file_to_image(game->map.mlx,
+			"./assets/ped_back.xpm", &size, &size);
+	game->map.wall = mlx_xpm_file_to_image(game->map.mlx,
+			"./assets/wall.xpm", &size, &size);
+	game->map.empty = mlx_xpm_file_to_image(game->map.mlx,
+			"./assets/empty2.xpm", &size, &size);
+	game->map.house = mlx_xpm_file_to_image(game->map.mlx,
+			"./assets/house.xpm", &size, &size);
 }
 
 void	display_assets(t_game *game)
 {
-	int	image_x;
-	int	image_y;
 	int	x;
 	int	y;
 
 	y = 0;
-	put_image(game, "./assets/bg3.xpm", 0, 1);
 	while (y < game->map.map_height)
 	{
 		x = 0;
-		display_map_elements(x, y, image_x, image_y);
+		while (x < game->map.map_width)
+		{
+			if (game->map.map_size[y][x] == '0')
+				display_empty(game, x, y);
+			else if (game->map.map_size[y][x] == '1')
+				display_wall(game, x, y);
+			else if (game->map.map_size[y][x] == 'E')
+				display_house(game, x, y);
+			else if (game->map.map_size[y][x] == 'P')
+				display_player(game, x, y);
+			else if (game->map.map_size[y][x] == 'C')
+				display_weapon(game, x, y);
+			x++;
+		}
 		y++;
 	}
 }

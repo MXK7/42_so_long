@@ -6,7 +6,7 @@
 /*   By: mpoussie <mpoussie@student.42lehavre.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 01:40:48 by mpoussie          #+#    #+#             */
-/*   Updated: 2023/06/11 22:56:00 by mpoussie         ###   ########.fr       */
+/*   Updated: 2023/06/16 05:12:07 by mpoussie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,92 +14,64 @@
 
 void	right(t_game *game)
 {
-	int		i;
-	int		j;
-	char	*relative_path;
+	int	x;
 
-	relative_path = "./assets/ped_right.xpm";
-	i = game->player.y;
-	j = game->player.x + 32;
-	printf("\ncheck_move:%d\nY:%d\nX:%d", check_move(game, j, i), i, j);
-	if (check_move(game, j, i) == 1)
+	x = game->player.x + 32;
+	if (check_move(game, x, game->player.y))
 	{
-		game->player.x = j;
-		game->player.mouv++;
-		display_assets(game);
-		put_image(game, relative_path, j, i);
-	}
-	else
-	{
-		printf("Mouvement interdit vers la droite.\n");
+		game->player.x = x;
+		mlx_put_image_to_window(game->map.mlx, game->map.mlx_window,
+			game->map.ped_right, game->player.x, game->player.y);
+		mlx_put_image_to_window(game->map.mlx, game->map.mlx_window,
+			game->map.empty, game->player.x - 32, game->player.y);
+		update_move(game);
 	}
 }
 
 void	left(t_game *game)
 {
-	int		i;
-	int		j;
-	char	*relative_path;
+	int	x;
 
-	relative_path = "./assets/ped_left.xpm";
-	i = game->player.y;
-	j = game->player.x - 32;
-	printf("\ncheck_move:%d\nY:%d\nX:%d", check_move(game, j, i), i, j);
-	if (check_move(game, j, i) == 1)
+	x = game->player.x - 32;
+	if (check_move(game, x, game->player.y))
 	{
-		game->player.x = j;
-		game->player.mouv++;
-		display_assets(game);
-		put_image(game, relative_path, j, i);
-	}
-	else
-	{
-		printf("Mouvement interdit vers la gauche.\n");
+		game->player.x = x;
+		mlx_put_image_to_window(game->map.mlx, game->map.mlx_window,
+			game->map.ped_left, game->player.x, game->player.y);
+		mlx_put_image_to_window(game->map.mlx, game->map.mlx_window,
+			game->map.empty, game->player.x + 32, game->player.y);
+		update_move(game);
 	}
 }
 
 void	up(t_game *game)
 {
-	int		i;
-	int		j;
-	char	*relative_path;
+	int	y;
 
-	relative_path = "./assets/ped.xpm";
-	i = game->player.y - 32;
-	j = game->player.x;
-	printf("\ncheck_move:%d\nY:%d\nX:%d", check_move(game, j, i), i, j);
-	if (check_move(game, j, i) == 1)
+	y = game->player.y - 32;
+	if (check_move(game, game->player.x, y))
 	{
-		game->player.y = i;
-		game->player.mouv++;
-		display_assets(game);
-		put_image(game, relative_path, j, i);
-	}
-	else
-	{
-		printf("Mouvement interdit vers le haut.\n");
+		game->player.y = y;
+		mlx_put_image_to_window(game->map.mlx, game->map.mlx_window,
+			game->map.ped, game->player.x, game->player.y);
+		mlx_put_image_to_window(game->map.mlx, game->map.mlx_window,
+			game->map.empty, game->player.x, game->player.y + 32);
+		update_move(game);
 	}
 }
 
 void	down(t_game *game)
 {
-	int		i;
-	int		j;
-	char	*relative_path;
+	int	y;
 
-	relative_path = "./assets/ped_back.xpm";
-	i = game->player.y + 32;
-	j = game->player.x;
-	printf("\ncheck_move:%d\nY:%d\nX:%d", check_move(game, j, i), i, j);
-	if (check_move(game, j, i) == 1)
+	y = game->player.y + 32;
+	if (check_move(game, game->player.x, y))
 	{
-		game->player.y = i;
-		game->player.mouv++;
-		display_assets(game);
-		put_image(game, relative_path, j, i);
-	}
-	else
-	{
-		printf("Mouvement interdit vers le bas.\n");
+		game->player.y = y;
+		mlx_put_image_to_window(game->map.mlx, game->map.mlx_window,
+			game->map.ped_back, game->player.x, game->player.y);
+		mlx_put_image_to_window(game->map.mlx, game->map.mlx_window,
+			game->map.empty, game->player.x, game->player.y - 32);
+		update_move(game);
 	}
 }
