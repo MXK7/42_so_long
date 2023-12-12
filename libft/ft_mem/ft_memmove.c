@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_init.c                                         :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpoussie <mpoussie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/27 19:52:20 by mpoussie          #+#    #+#             */
-/*   Updated: 2023/12/08 21:52:20 by mpoussie         ###   ########.fr       */
+/*   Created: 2023/04/12 20:27:36 by mpoussie          #+#    #+#             */
+/*   Updated: 2023/05/01 04:08:54 by mpoussie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../so_long.h"
+#include "../libft.h"
 
-// OPEN FOLDER MAP
-void	init_map(t_game *game)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	char	*gnl;
-	int		i;
+	size_t	i;
 
 	i = 0;
-	gnl = get_next_line(game->map.fd);
-	game->map.map_size = malloc(len_map(gnl) * sizeof(char *));
-	game->map.map_width = len_map(gnl);
-	while (gnl != NULL)
+	if (src > dest)
 	{
-		game->map.map_size[i] = gnl;
-		gnl = get_next_line(game->map.fd);
-		i++;
+		while (i < n)
+		{
+			((char *)dest)[i] = ((char *)src)[i];
+			i++;
+		}
 	}
-	game->map.map_size[i] = '\0';
-	game->map.map_height = i;
+	if (src < dest)
+	{
+		while (n != 0)
+		{
+			n--;
+			((char *)dest)[n] = ((char *)src)[n];
+		}
+	}
+	return (dest);
 }

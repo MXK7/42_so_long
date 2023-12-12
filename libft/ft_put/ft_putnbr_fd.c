@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_init.c                                         :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpoussie <mpoussie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/27 19:52:20 by mpoussie          #+#    #+#             */
-/*   Updated: 2023/12/08 21:52:20 by mpoussie         ###   ########.fr       */
+/*   Created: 2023/04/18 04:16:22 by mpoussie          #+#    #+#             */
+/*   Updated: 2023/05/01 04:09:05 by mpoussie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../so_long.h"
+#include "../libft.h"
 
-// OPEN FOLDER MAP
-void	init_map(t_game *game)
+void	ft_putnbr_fd(int n, int fd)
 {
-	char	*gnl;
-	int		i;
-
-	i = 0;
-	gnl = get_next_line(game->map.fd);
-	game->map.map_size = malloc(len_map(gnl) * sizeof(char *));
-	game->map.map_width = len_map(gnl);
-	while (gnl != NULL)
+	if (n == -2147483648)
 	{
-		game->map.map_size[i] = gnl;
-		gnl = get_next_line(game->map.fd);
-		i++;
+		ft_putstr_fd("-2147483648", fd);
+		return ;
 	}
-	game->map.map_size[i] = '\0';
-	game->map.map_height = i;
+	if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		n = -n;
+	}
+	if (n <= 9)
+	{
+		ft_putchar_fd(n + '0', fd);
+	}
+	else
+	{
+		ft_putnbr_fd(n / 10, fd);
+		ft_putnbr_fd(n % 10, fd);
+	}
+	return ;
 }

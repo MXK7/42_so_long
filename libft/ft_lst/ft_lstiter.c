@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_init.c                                         :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpoussie <mpoussie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/27 19:52:20 by mpoussie          #+#    #+#             */
-/*   Updated: 2023/12/08 21:52:20 by mpoussie         ###   ########.fr       */
+/*   Created: 2023/04/19 09:56:22 by mpoussie          #+#    #+#             */
+/*   Updated: 2023/05/01 04:08:33 by mpoussie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../so_long.h"
+#include "../libft.h"
 
-// OPEN FOLDER MAP
-void	init_map(t_game *game)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	char	*gnl;
-	int		i;
-
-	i = 0;
-	gnl = get_next_line(game->map.fd);
-	game->map.map_size = malloc(len_map(gnl) * sizeof(char *));
-	game->map.map_width = len_map(gnl);
-	while (gnl != NULL)
+	if (!lst || !f)
+		return ;
+	while (lst)
 	{
-		game->map.map_size[i] = gnl;
-		gnl = get_next_line(game->map.fd);
-		i++;
+		f(lst->content);
+		lst = lst->next;
 	}
-	game->map.map_size[i] = '\0';
-	game->map.map_height = i;
 }

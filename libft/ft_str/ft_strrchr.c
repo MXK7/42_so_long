@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_init.c                                         :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpoussie <mpoussie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/27 19:52:20 by mpoussie          #+#    #+#             */
-/*   Updated: 2023/12/08 21:52:20 by mpoussie         ###   ########.fr       */
+/*   Created: 2023/04/11 22:05:04 by mpoussie          #+#    #+#             */
+/*   Updated: 2023/05/01 04:09:44 by mpoussie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../so_long.h"
+#include "../libft.h"
 
-// OPEN FOLDER MAP
-void	init_map(t_game *game)
+char	*ft_strrchr(const char *str, int c)
 {
-	char	*gnl;
-	int		i;
+	int	i;
+	int	i2;
 
-	i = 0;
-	gnl = get_next_line(game->map.fd);
-	game->map.map_size = malloc(len_map(gnl) * sizeof(char *));
-	game->map.map_width = len_map(gnl);
-	while (gnl != NULL)
+	i2 = 0;
+	while (str[i2])
+		i2++;
+	i = i2;
+	while (i >= 0)
 	{
-		game->map.map_size[i] = gnl;
-		gnl = get_next_line(game->map.fd);
-		i++;
+		if (str[i] == (char)c)
+			return ((char *)str + i);
+		i--;
 	}
-	game->map.map_size[i] = '\0';
-	game->map.map_height = i;
+	return (NULL);
 }

@@ -1,33 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_init.c                                         :+:      :+:    :+:   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpoussie <mpoussie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/27 19:52:20 by mpoussie          #+#    #+#             */
-/*   Updated: 2023/12/08 21:52:20 by mpoussie         ###   ########.fr       */
+/*   Created: 2023/04/21 09:00:13 by mpoussie          #+#    #+#             */
+/*   Updated: 2023/05/01 04:07:59 by mpoussie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../so_long.h"
+#include "../../libft.h"
 
-// OPEN FOLDER MAP
-void	init_map(t_game *game)
+void	ft_put_str(char *str)
 {
-	char	*gnl;
-	int		i;
+	int	i;
 
 	i = 0;
-	gnl = get_next_line(game->map.fd);
-	game->map.map_size = malloc(len_map(gnl) * sizeof(char *));
-	game->map.map_width = len_map(gnl);
-	while (gnl != NULL)
+	while (str[i])
 	{
-		game->map.map_size[i] = gnl;
-		gnl = get_next_line(game->map.fd);
+		write(1, &str[i], 1);
 		i++;
 	}
-	game->map.map_size[i] = '\0';
-	game->map.map_height = i;
+}
+
+int	ft_printf_len(uintptr_t nbr)
+{
+	int	len;
+
+	len = 0;
+	while (nbr != 0)
+	{
+		len++;
+		nbr /= 16;
+	}
+	return (len);
+}
+
+void	ft_put_ptr(uintptr_t nbr)
+{
+	if (nbr >= 16)
+	{
+		ft_put_ptr(nbr / 16);
+		ft_put_ptr(nbr % 16);
+	}
+	else
+	{
+		if (nbr <= 9)
+			ft_print_char(nbr + '0');
+		else
+			ft_print_char(nbr - 10 + 'a');
+	}
 }

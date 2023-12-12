@@ -6,7 +6,7 @@
 /*   By: mpoussie <mpoussie@student.42lehavre.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 02:02:56 by mpoussie          #+#    #+#             */
-/*   Updated: 2023/06/16 05:33:52 by mpoussie         ###   ########.fr       */
+/*   Updated: 2023/06/16 05:51:52 by mpoussie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # define IMAGE_WIDTH 32
 # define IMAGE_HEIGHT 32
 
-# include "include/libft/libft.h"
-# include "include/minilibx/mlx.h"
+# include "libft/libft.h"
+# include "minilibx-linux/mlx.h"
 # include <fcntl.h>
 # include <stdio.h>  // TODO DELETE
 # include <stdlib.h> // TODO DELETE

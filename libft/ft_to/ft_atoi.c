@@ -1,33 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_init.c                                         :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpoussie <mpoussie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/27 19:52:20 by mpoussie          #+#    #+#             */
-/*   Updated: 2023/12/08 21:52:20 by mpoussie         ###   ########.fr       */
+/*   Created: 2023/04/12 03:25:50 by mpoussie          #+#    #+#             */
+/*   Updated: 2023/05/01 04:09:52 by mpoussie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../so_long.h"
+#include "../libft.h"
 
-// OPEN FOLDER MAP
-void	init_map(t_game *game)
+int	ft_atoi(const char *str)
 {
-	char	*gnl;
-	int		i;
+	int	i;
+	int	j;
+	int	result;
 
 	i = 0;
-	gnl = get_next_line(game->map.fd);
-	game->map.map_size = malloc(len_map(gnl) * sizeof(char *));
-	game->map.map_width = len_map(gnl);
-	while (gnl != NULL)
+	j = 1;
+	result = 0;
+	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t' || str[i] == '\v'
+		|| str[i] == '\f' || str[i] == '\r')
+		i++;
+	if (str[i] == '+' || str[i] == '-')
 	{
-		game->map.map_size[i] = gnl;
-		gnl = get_next_line(game->map.fd);
+		if (str[i] == '-')
+		{
+			j = j * -1;
+		}
 		i++;
 	}
-	game->map.map_size[i] = '\0';
-	game->map.map_height = i;
+	while (str[i] >= 48 && str[i] <= 57)
+	{
+		result = result * 10 + (str[i] - 48);
+		i++;
+	}
+	return (result * j);
 }

@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_init.c                                         :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpoussie <mpoussie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/27 19:52:20 by mpoussie          #+#    #+#             */
-/*   Updated: 2023/12/08 21:52:20 by mpoussie         ###   ########.fr       */
+/*   Created: 2023/04/11 22:38:03 by mpoussie          #+#    #+#             */
+/*   Updated: 2023/05/01 04:09:21 by mpoussie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../so_long.h"
+#include "../libft.h"
 
-// OPEN FOLDER MAP
-void	init_map(t_game *game)
+char	*ft_strdup(const char *src)
 {
-	char	*gnl;
-	int		i;
+	char	*dest;
+	size_t	i;
+	size_t	strlen;
 
+	strlen = ft_strlen(src);
+	dest = (char *)malloc(sizeof(*dest) * (strlen + 1));
+	if (!dest)
+		return (NULL);
 	i = 0;
-	gnl = get_next_line(game->map.fd);
-	game->map.map_size = malloc(len_map(gnl) * sizeof(char *));
-	game->map.map_width = len_map(gnl);
-	while (gnl != NULL)
+	while (i < strlen)
 	{
-		game->map.map_size[i] = gnl;
-		gnl = get_next_line(game->map.fd);
+		dest[i] = src[i];
 		i++;
 	}
-	game->map.map_size[i] = '\0';
-	game->map.map_height = i;
+	dest[i] = '\0';
+	return (dest);
 }

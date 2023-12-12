@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_init.c                                         :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpoussie <mpoussie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/27 19:52:20 by mpoussie          #+#    #+#             */
-/*   Updated: 2023/12/08 21:52:20 by mpoussie         ###   ########.fr       */
+/*   Created: 2023/04/14 03:22:26 by marvin            #+#    #+#             */
+/*   Updated: 2023/05/01 04:09:38 by mpoussie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../so_long.h"
+#include "../libft.h"
 
-// OPEN FOLDER MAP
-void	init_map(t_game *game)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	char	*gnl;
-	int		i;
+	int	i;
 
 	i = 0;
-	gnl = get_next_line(game->map.fd);
-	game->map.map_size = malloc(len_map(gnl) * sizeof(char *));
-	game->map.map_width = len_map(gnl);
-	while (gnl != NULL)
+	while (s1[i] && s1[i] == s2[i] && n > 0)
 	{
-		game->map.map_size[i] = gnl;
-		gnl = get_next_line(game->map.fd);
 		i++;
+		n--;
 	}
-	game->map.map_size[i] = '\0';
-	game->map.map_height = i;
+	if (n == 0)
+		return (0);
+	return ((unsigned char)(s1[i]) - (unsigned char)(s2[i]));
 }

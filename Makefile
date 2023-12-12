@@ -6,7 +6,7 @@
 #    By: mpoussie <mpoussie@student.42lehavre.fr    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/08 17:19:09 by mpoussie          #+#    #+#              #
-#    Updated: 2023/06/16 05:26:12 by mpoussie         ###   ########.fr        #
+#    Updated: 2023/06/16 05:55:41 by mpoussie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,8 +27,8 @@ SRCS =	core/main.c \
 
 OBJS = $(SRCS:.c=.o)
 
-LIBFT_DIR = ./include/libft
-MLX_DIR = ./include/minilibx
+LIBFT_DIR = ./libft
+MLX_DIR = ./minilibx-linux
 
 LIBFT = $(LIBFT_DIR)/libft.a
 MLX = $(MLX_DIR)/libmlx_Linux.a
